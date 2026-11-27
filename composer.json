@@ -1,0 +1,36 @@
+{
+    "name": "pqrs/app",
+    "type": "project",
+    "require": {
+        "codeigniter4/framework": "*",
+        "laminas/laminas-escaper": "*",
+        "psr/log": "*",
+        "firebase/php-jwt": "^7.2"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "C:/tmp/cipkg/codeigniter4-framework",
+            "options": {
+                "symlink": false
+            }
+        },
+        {
+            "type": "path",
+            "url": "C:/tmp/cipkg/laminas/laminas-escaper",
+            "options": {
+                "symlink": false
+            }
+        },
+        {
+            "type": "path",
+            "url": "C:/tmp/cipkg/psr/log",
+            "options": {
+                "symlink": false
+            }
+        }
+    ],
+    "config": {
+        "allow-plugins": {}
+    }
+}
