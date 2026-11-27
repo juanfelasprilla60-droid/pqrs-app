@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "PQRS API - Seguridad",
-    "description": "Colección de pruebas del backend PQRS (CodeIgniter 4 + JWT).\n\n1. Ejecuta '0.1 Login' (guarda el token automáticamente en la variable de colección `token`).\n2. El resto de peticiones ya usan {{token}}.\n3. Las variables `permissionId`, `moduleId` y `userId` se actualizan al crear un permiso/módulo/usuario.\n\nServidor: {{baseUrl}} (por defecto http://localhost:8080)",
+    "description": "Colección de pruebas del backend PQRS (CodeIgniter 4 + JWT).\n\n1. Ejecuta '0.1 Login' (guarda el token automáticamente en la variable de colección `token`).\n2. El resto de peticiones ya usan {{token}}.\n3. Las variables `roleId`, `permissionId`, `moduleId` y `userId` se actualizan al crear un rol/permiso/módulo/usuario.\n\nServidor: {{baseUrl}} (por defecto http://localhost:8080)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -9,7 +9,8 @@
     { "key": "token", "value": "" },
     { "key": "permissionId", "value": "1" },
     { "key": "moduleId", "value": "6" },
-    { "key": "userId", "value": "9" }
+    { "key": "userId", "value": "9" },
+    { "key": "roleId", "value": "4" }
   ],
   "item": [
     {
@@ -101,6 +102,15 @@
           "name": "1.3 Crear rol",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('roleName', 'auditor_' + Date.now());"
+                ]
+              }
+            },
+            {
               "listen": "test",
               "script": {
                 "type": "text/javascript",
@@ -122,7 +132,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"auditor\",\n  \"description\": \"Rol de auditoría\",\n  \"is_active\": 1\n}",
+              "raw": "{\n  \"name\": \"{{roleName}}\",\n  \"description\": \"Rol de auditoría\",\n  \"is_active\": 1\n}",
               "options": { "raw": { "language": "json" } }
             },
             "url": {
@@ -146,9 +156,9 @@
               "options": { "raw": { "language": "json" } }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/roles/4",
+              "raw": "{{baseUrl}}/api/roles/{{roleId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "roles", "4"]
+              "path": ["api", "roles", "{{roleId}}"]
             }
           }
         },
@@ -160,9 +170,9 @@
               { "key": "Authorization", "value": "Bearer {{token}}" }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/roles/4",
+              "raw": "{{baseUrl}}/api/roles/{{roleId}}",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "roles", "4"]
+              "path": ["api", "roles", "{{roleId}}"]
             }
           }
         }
@@ -203,6 +213,15 @@
           "name": "2.3 Crear permiso",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('permName', 'export_' + Date.now());"
+                ]
+              }
+            },
+            {
               "listen": "test",
               "script": {
                 "type": "text/javascript",
@@ -224,7 +243,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"export\",\n  \"description\": \"Exportar datos\"\n}",
+              "raw": "{\n  \"name\": \"{{permName}}\",\n  \"description\": \"Exportar datos\"\n}",
               "options": { "raw": { "language": "json" } }
             },
             "url": {
