@@ -1,0 +1,25 @@
+# Secretos y entorno local (usar la plantilla "env" como guía)
+.env
+.env.*
+
+# Dependencias (se restauran con composer install)
+vendor/
+
+# Cachés, logs y debugbar generados en ejecución
+writable/cache/*
+!writable/cache/index.html
+writable/debugbar/*
+!writable/debugbar/index.html
+writable/logs/*
+!writable/logs/index.html
+writable/session/*
+!writable/session/index.html
+writable/uploads/*
+!writable/uploads/index.html
+
+# Editores e IDE
+.vscode/
+.idea/
+.run/
+*.swp
+.DS_Store
